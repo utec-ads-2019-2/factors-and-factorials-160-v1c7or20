@@ -8,7 +8,8 @@ int main(){
     map<int, int> * primos;
     int nprimos[25] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97};
     double x;
-    while (cin>>x and x!=0){
+    while (cin>>x ){
+        if (x == 0)break;
         primos = new map<int, int>();
         for (int i = 2; i <= x ; i++) {
             int val = i;
@@ -24,23 +25,14 @@ int main(){
                 }
             }
         }
-        cout << setw(3)<<x<<"! = ";
         int n = 0;
-        for (auto k = primos->begin(); k != primos->end() ; k++) {
-
-            if (n!=15){
-                if (k->second>=10){
-                    cout<<setw(0)<<(k->second)<<" ";
-                }else{
-                    cout<<setw(2)<<(k->second)<<" ";
-                }
-            } else{
-                cout<<endl<<"       "<<setw(2)<<(k->second)<<" ";
-                n=0;
-            }
+        cout << setw(3) << x << "! =";
+        for (auto i = primos->begin(); i != primos->end(); i++) {
+            if (n % 15==0 and n>0) cout << endl << "      ";
+            cout << setw(3) << i->second;
             n++;
-
-        }cout<<endl;
+        }
+        cout << endl;
         primos->clear();
     }
 }
